@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @photo %>
+<%= image_tag @photo.image if @photo.image.attached? %> 
+<div>
+  <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
+  <%= link_to "Back to photos", photos_path %>
+
+  <%= button_to "Destroy this photo", @photo, method: :delete %>
+</div>

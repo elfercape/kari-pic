@@ -1,0 +1,11 @@
+<% content_for :title, "New comentary" %>
+
+<h1>New comentary</h1>
+
+<%= render "form", comentary: @comentary %>
+
+<br>
+
+<div>
+  <%= link_to "Back to comentaries", comentaries_path %>
+</div>

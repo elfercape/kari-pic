@@ -1,0 +1,42 @@
+<%= form_with(model: photo, local: true) do |form| %>
+  <div class="container mt-5">
+    <% if photo.errors.any? %>
+      <div class="alert alert-danger">
+        <h2><%= pluralize(photo.errors.count, "error") %> prohibited this photo from being saved:</h2>
+        <ul>
+          <% photo.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="card p-4 shadow">
+      <h3 class="text-center">Upload Photo</h3>
+
+      <div class="mb-3">
+        <%= form.label :title, style: "display: block" %>
+        <%= form.text_field :title, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :content, style: "display: block" %>
+        <%= form.text_area :content, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :user_id, style: "display: block" %>
+        <%= form.text_field :user_id, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= form.label :image, style: "display: block" %>
+        <%= form.file_field :image, class: "form-control" %>
+      </div>
+
+      <div class="text-center">
+        <%= form.submit "Submit", class: "btn btn-primary" %>
+      </div>
+    </div>
+  </div>
+<% end %>
