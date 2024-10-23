@@ -24,10 +24,12 @@
         <%= form.text_area :content, class: "form-control" %>
       </div>
 <!-- cambiar esto por current_user -->
+<!-- no hace falta / cambio en el controlador -->
       <div class="mb-3">
-<!--    <%= form.label :user_id, style: "display: block" %> -->
-        <%= form.hidden_field current_user.id, class: "form-control" %>
+<!--    <%= form.label :user_id, style: "display: block" %> 
+        <%= form.hidden_field :user_id, class: "form-control" %>
       </div>
+-->
 
       <div class="mb-3">
         <%= form.label :image, style: "display: block" %>
