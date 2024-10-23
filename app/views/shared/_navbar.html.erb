@@ -1,41 +1,46 @@
-<nav class="navbar navbar-expand-lg bg-body-secondary">
+<nav class="navbar bg-body-secondary">
   <div class="container-fluid">
-    <%# <a class="navbar-brand text-success" href="#">Kari Pic</a> %>
+    <div></div>
     <%= link_to "KariPic", root_path, class: 'navbar-brand text-success' %>
-    <% if user_signed_in? %>
-       <b> <%= current_user.email %></b>
-    <% end%>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="news">Home</a>
-        </li>     
-      </ul>
-
+      <ul class="navbar-nav mb-2 mb-lg-0">
       <div class="d-flex mx-2 justify-content-end align-items-center">
-        <li class="nav-item dropdown">
+        <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          
-          <% if user_signed_in? %>
-           Hola <%= current_user.email %>
-           <% else %>
-            Dale registrate o conectate
-          <% end %>
+            <div class="fotoNavbar">
+              <% if user_signed_in? %>
+                <% if @photo != nil %>
+                    <img
+                      <%= @photo.image.attachment %>
+                    >
+                <% end %>
+              <% end %>
+            <% if user_signed_in? %>
+              Hola <%= current_user.name || current_user.email %>
+            <% else %>
+              Identificate
+            <% end %>
+            </div>
           </a>
           <ul class="dropdown-menu">
             <% if user_signed_in?%>
               <li><%= button_to 'Cerrar sesión', destroy_user_session_path, class: 'dropdown-item', method: :delete %></li>
             <% else %>
-              <li><a class="dropdown-item text-danger" href="/users/sign_in">Inicio Sesion</a></li>
-              <li><a class="dropdown-item text-danger" href="/users/sign_up">Registro</a></li>
+              <li>
+                <%= link_to "Inicio Sesion", new_user_session_path, class: "dropdown-item text-danger" %>
+              </li>
+              <li>
+                <%= link_to "Registro", new_user_registration_path, class: "dropdown-item text-danger" %>
+              </li>
             <% end%>
           </ul>
-        </li>
+          
+        </div> <!-- nav-item dropdown -->
       </div>
     </div>
-  </div>
+  </div> <!-- fin navbar > container-fluid -->
 </nav>

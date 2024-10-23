@@ -13,3 +13,18 @@
  *= require_tree .
  *= require_self
  */
+
+ .fotoNavbar{
+   text-align: right;
+/*   background-color: pink;  */
+   width: auto;
+   /*  border: 1px solid black;  */
+   >img{
+     height: 25px;
+     width: 25px;    
+    }
+}
+
+a.navbar-brand{
+  margin: 0px;
+}
