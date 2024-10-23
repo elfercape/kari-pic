@@ -4,13 +4,19 @@
 
 <h1>Photos</h1>
 
-<div id="photos">
+<div id="photos" class="d-flex flex-wrap">
   <% @photos.each do |photo| %>
-    <%= render photo %>
-    <p>
-      <%= link_to "Show this photo", photo %>
-    </p>
+    <div class="card m-2" style="width: 18rem;">
+      <% if photo.image.attached? %>
+        <%= image_tag photo.image, class: "card-img-top", style: "height: 200px; object-fit: cover;" %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= photo.title %></h5>
+        <p class="card-text"><%= photo.content %></p>
+        <%= link_to "Show this photo", photo_path(photo), class: "btn btn-primary" %>
+      </div>
+    </div>
   <% end %>
 </div>
 
-<%= link_to "New photo", new_photo_path %>
+<%= link_to "New photo", new_photo_path, class: "btn btn-success mt-3" %>
