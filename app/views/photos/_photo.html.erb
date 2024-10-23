@@ -1,22 +1,10 @@
-<div id="<%= dom_id photo %>">
-  <p>
-    <strong>Title:</strong>
-    <%= photo.title %>
-  </p>
-
-  <p>
-    <strong>Content:</strong>
-    <%= photo.content %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= photo.user_id %>
-  </p>
-
-  <p>
-    <strong>Image:</strong>
-    <%= photo.image %>
-  </p>
-
+<div id="<%= dom_id photo %>" class="photo-card" style="max-width: 400px; margin: 0 auto;">
+  <% if photo.image.attached? %>
+    <%= image_tag photo.image, style: "max-width: 100%; height: auto; display: block; margin: 0 auto;" %>
+  <% end %>
+  <div style="display: flex; justify-content: space-between;">
+    <p style="font-weight: bold; text-align: left;">Title: <%= photo.title %></p>
+    <p style="font-weight: bold; text-align: right;">User: <%= photo.user.name %></p>
+  </div>
+  <p style="text-align: justify;">Content: <%= photo.content %></p>
 </div>

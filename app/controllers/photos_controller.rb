@@ -1,6 +1,7 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ new ]
+  before_action :authenticate_user!, only: %i[ new create edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update destroy ]
 
   # GET /photos or /photos.json
   def index
@@ -9,6 +10,7 @@ class PhotosController < ApplicationController
 
   # GET /photos/1 or /photos/1.json
   def show
+    @comentary = Comentary.new
   end
 
   # GET /photos/new
@@ -24,7 +26,7 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user = current_user
-    
+
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: "Photo was successfully created." }
@@ -52,7 +54,6 @@ class PhotosController < ApplicationController
   # DELETE /photos/1 or /photos/1.json
   def destroy
     @photo.destroy!
-
     respond_to do |format|
       format.html { redirect_to photos_path, status: :see_other, notice: "Photo was successfully destroyed." }
       format.json { head :no_content }
@@ -60,13 +61,19 @@ class PhotosController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_photo
-      @photo = Photo.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def photo_params
-      params.require(:photo).permit(:title, :content, :user_id, :image)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_photo
+    @photo = Photo.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def photo_params
+    params.require(:photo).permit(:title, :content, :user_id, :image)
+  end
+
+  # Authorize only admins to perform certain actions
+  def authorize_admin
+    redirect_to root_path, alert: 'No tienes permiso para realizar esta acción' unless current_user.admin?
+  end
 end

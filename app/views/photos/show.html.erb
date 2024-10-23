@@ -1,10 +1,30 @@
 <p style="color: green"><%= notice %></p>
-
 <%= render @photo %>
-<%= image_tag @photo.image if @photo.image.attached? %> 
-<div>
-  <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
-  <%= link_to "Back to photos", photos_path %>
 
-  <%= button_to "Destroy this photo", @photo, method: :delete %>
+<div>
+  <%= link_to "Back to photos", photos_path %> |
+  <% if user_signed_in? && current_user.admin? %>
+    <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
+    <%= button_to "Destroy this photo", @photo, method: :delete %>
+  <% end %>
+</div>
+
+<!-- Render the form for new comments -->
+<div class="container mt-3">
+  <%= render 'comentaries/form', comentary: @comentary, photo: @photo %>
+</div>
+
+<!-- Render all comments for the photo -->
+<div class="comments-section mt-5">
+  <h3>Comentarios:</h3>
+  <% if @photo.comentaries.any? %>
+    <% @photo.comentaries.each do |comentary| %>
+      <div class="comentary mb-3 p-2 border">
+        <p><strong><%= comentary.user.name %></strong> comentó:</p>
+        <p><%= comentary.description %></p>
+      </div>
+    <% end %>
+  <% else %>
+    <p>No hay comentarios todavía.</p>
+  <% end %>
 </div>

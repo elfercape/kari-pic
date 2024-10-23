@@ -1,4 +1,4 @@
-<%= form_with(model: comentary, local: true) do |form| %>
+<%= form_with(model: [photo, comentary], local: true) do |form| %>
   <div class="container mt-3">
     <% if comentary.errors.any? %>
       <div class="alert alert-danger">
@@ -10,25 +10,12 @@
         </ul>
       </div>
     <% end %>
-
     <div class="card p-3 shadow">
       <h3 class="text-center">Add a Comment</h3>
-
       <div class="mb-2">
         <%= form.label :description, style: "display: block" %>
         <%= form.text_field :description, class: "form-control" %>
       </div>
-
-      <div class="mb-2">
-        <%= form.label :user_id, style: "display: block" %>
-        <%= form.text_field :user_id, class: "form-control" %>
-      </div>
-
-      <div class="mb-2">
-        <%= form.label :photos_id, style: "display: block" %>
-        <%= form.text_field :photos_id, class: "form-control" %>
-      </div>
-
       <div class="text-center">
         <%= form.submit "Submit", class: "btn btn-primary" %>
       </div>

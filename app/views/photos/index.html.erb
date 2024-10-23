@@ -3,6 +3,11 @@
 <% content_for :title, "Photos" %>
 
 <h1>Photos</h1>
+<% if user_signed_in? && current_user.admin? %>
+  <%= link_to 'Subir nueva foto', new_photo_path, class: 'btn btn-primary' %>
+<% else %>
+  <!-- No mostrar el botón si no es admin -->
+<% end %>
 
 <div id="photos" class="d-flex flex-wrap">
   <% @photos.each do |photo| %>
@@ -18,5 +23,3 @@
     </div>
   <% end %>
 </div>
-
-<%= link_to "New photo", new_photo_path, class: "btn btn-success mt-3" %>

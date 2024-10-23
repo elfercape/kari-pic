@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_23_003739) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_23_041537) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -45,10 +45,10 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_003739) do
   create_table "comentaries", force: :cascade do |t|
     t.string "description"
     t.bigint "user_id", null: false
-    t.bigint "photos_id", null: false
+    t.bigint "photo_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["photos_id"], name: "index_comentaries_on_photos_id"
+    t.index ["photo_id"], name: "index_comentaries_on_photo_id"
     t.index ["user_id"], name: "index_comentaries_on_user_id"
   end
 
@@ -80,7 +80,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_23_003739) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comentaries", "photos", column: "photos_id"
+  add_foreign_key "comentaries", "photos"
   add_foreign_key "comentaries", "users"
   add_foreign_key "photos", "users"
 end
