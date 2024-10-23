@@ -13,18 +13,65 @@
  *= require_tree .
  *= require_self
  */
+:root{
+  --COMMENT_PFP_SIZE: 25px;
+  --NAVBAR_PFP_SIZE: 25px;
+}
 
- .fotoNavbar{
-   text-align: right;
+.fotoNavbar{
+  text-align: right;
+  width: auto;
 /*   background-color: pink;  */
-   width: auto;
-/*   border: 1px solid black;  */
-   >img{
-     height: 25px;
-     width: 25px;    
-    }
+/*   border: 1px solid black; */
+  >img{
+    height: var(--NAVBAR_PFP_SIZE);
+    width: var(--NAVBAR_PFP_SIZE);
+  }
 }
 
 a.navbar-brand{
   margin: 0px;
+}
+
+#welcome{
+  text-align: center;
+  margin: 5vh 0 0 0;
+  padding: 2.5%;
+  background-color: rgba(127, 255, 212, 0.125);
+  border: 5px double black;
+}
+
+.prefooter{
+  margin-bottom: 10vh;
+}
+
+.pfpComment{
+  height: var(--COMMENT_PFP_SIZE);
+  width: var(--COMMENT_PFP_SIZE);
+}
+
+.comments-section{
+}
+
+.comentary{
+  border-radius: 10px;
+  background-color: rgba(0, 0, 0, 0.1);
+  >div{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+  }
+}
+
+.comment_user{
+  padding-left: 15px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 2px;
+  margin: 0px;
+}
+
+.opt_btns{
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
 }

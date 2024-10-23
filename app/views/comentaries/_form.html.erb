@@ -11,13 +11,13 @@
       </div>
     <% end %>
     <div class="card p-3 shadow">
-      <h3 class="text-center">Add a Comment</h3>
+      <h6 class="text-left">New Comment</h6>
       <div class="mb-2">
-        <%= form.label :description, style: "display: block" %>
+        <%# <%= form.label :description, style: "display: block" %>
         <%= form.text_field :description, class: "form-control" %>
       </div>
-      <div class="text-center">
-        <%= form.submit "Submit", class: "btn btn-primary" %>
+      <div class="text-end">
+        <%= form.submit "Submit", class: "btn btn-success" %>
       </div>
     </div>
   </div>

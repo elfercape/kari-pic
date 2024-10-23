@@ -1,11 +1,11 @@
 <p style="color: green"><%= notice %></p>
 <%= render @photo %>
 
-<div>
-  <%= link_to "Back to photos", photos_path %> |
+<div class="opt_btns">
+  <%= button_to "Back to photos", photos_path, method: :get, class:"btn btn-primary" %>
   <% if user_signed_in? && current_user.admin? %>
-    <%= link_to "Edit this photo", edit_photo_path(@photo) %> |
-    <%= button_to "Destroy this photo", @photo, method: :delete %>
+    <%= button_to "Edit this photo", edit_photo_path(@photo), method: :get, class:"btn btn-primary" %>
+    <%= button_to "Destroy this photo", @photo, method: :delete, class:"btn btn-danger" %>
   <% end %>
 </div>
 
@@ -15,13 +15,16 @@
 </div>
 
 <!-- Render all comments for the photo -->
-<div class="comments-section mt-5">
+<div class="comments-section my-5">
   <h3>Comentarios:</h3>
   <% if @photo.comentaries.any? %>
-    <% @photo.comentaries.each do |comentary| %>
+    <% @photo.comentaries.reverse.each do |comentary| %>
       <div class="comentary mb-3 p-2 border">
-        <p><strong><%= comentary.user.name %></strong> comentó:</p>
-        <p><%= comentary.description %></p>
+        <div>
+          <p class="text-start"><strong><%= image_tag comentary.user.photo, class:"pfpComment" %> <%= comentary.user.name %></strong> comentó:</p>
+          <p class="text-end"><%= comentary.created_at %></p>
+        </div>
+        <p class="comment_user"><%= comentary.description %></p>
       </div>
     <% end %>
   <% else %>
