@@ -1,5 +1,6 @@
 class User < ApplicationRecord
-  
+  enum :role, [:normal, :admin]
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -8,5 +9,6 @@ class User < ApplicationRecord
     has_many :comentaries
     
     has_one_attached :photo
+
     
 end

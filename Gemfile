@@ -60,3 +60,5 @@ gem "devise", "~> 4.9"
 
 
 gem "figaro", "~> 1.2"
+
+gem "cancancan", "~> 3.6"
