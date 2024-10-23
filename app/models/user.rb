@@ -6,7 +6,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
     has_many :photos
     has_many :comentaries
-    
     has_one_attached :photo
-    
+    enum :role, [:normal, :admin]
 end
