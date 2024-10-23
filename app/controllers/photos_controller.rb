@@ -1,5 +1,6 @@
 class PhotosController < ApplicationController
   before_action :set_photo, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, only: %i[ new ]
 
   # GET /photos or /photos.json
   def index
@@ -22,7 +23,7 @@ class PhotosController < ApplicationController
   # POST /photos or /photos.json
   def create
     @photo = Photo.new(photo_params)
-    
+
     respond_to do |format|
       if @photo.save
         format.html { redirect_to @photo, notice: "Photo was successfully created." }
